@@ -1,30 +1,22 @@
-import React, {ChangeEvent, Component} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 
-class Form extends Component {
-    state = {
-        firstName: '',
-    };
+export const Form = () => {
+    const [firstName, setFirstName] = useState('')
 
-
-    handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        this.setState({[event.target.name]: event.target.value})
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setFirstName(event.target.value)
     }
 
-    render() {
-        const {firstName} = this.state;
-        return (
-            <div>
-                <h1>Form</h1>
-                <input
-                    type="text"
-                    name="firstName"
-                    value={firstName}
-                    onChange={this.handleChange}
-                />
+    return (
+        <div>
+            <h1>Form</h1>
+            <input
+                type="text"
+                name="firstName"
+                value={firstName}
+                onChange={handleChange}
+            />
 
-            </div>
-        )
-    }
+        </div>
+    )
 }
-
-export default Form;
