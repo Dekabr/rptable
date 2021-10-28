@@ -1,19 +1,19 @@
 /* пиши нормальные классы - oper-table-header, oper-table-row */
 .header, .td {
-  border: 0.2px solid #000000;
+    border: 0.2px solid #000000;
 }
 
 /* не используй переопределения по тегам */
 h1, h2 {
-  text-align: center;
+    text-align: center;
 }
 
 .th {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 .td {
-  width: 100%;
+    width: 100%;
 }

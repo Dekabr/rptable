@@ -1,6 +1,6 @@
-import {Oper} from "./Oper"
+import { Oper } from './Oper'
 
-export function Table () {
+export function Table() {
   return (
     <div>
       <Oper />

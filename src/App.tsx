@@ -1,6 +1,6 @@
-import {Table} from "./Component/Table/Table"
-import React from "react";
+import { Table } from './Component/Table/Table'
+import React from 'react'
 
-const App = () => <Table/>
+const App = () => <Table />
 
-export default App;
+export default App
