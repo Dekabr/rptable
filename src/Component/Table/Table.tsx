@@ -1,9 +1,23 @@
-import { Oper } from './Oper'
+import { Operation } from './Operation'
 
-export function Table() {
+interface ITableProps {
+  operations: any[]
+}
+
+export function Table({ operations }: ITableProps) {
   return (
-    <div>
-      <Oper />
-    </div>
+    <table>
+      {/* {
+      props.pac.map(patient => (
+        <Patient key = {patient.id} name = {patient.name}/>
+      ))
+    } */}
+      {
+        operations.map(operation => (
+          <Operation key={operation.id} operation={operation} />
+        ))
+      }
+
+    </table>
   )
 }
