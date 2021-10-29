@@ -1,17 +1,10 @@
-.header, .td {
-  border: 0.2px solid #000000;
-}
-
-h1, h2 {
-  text-align: center;
-}
-
-.th {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.td {
+table {
   width: 100%;
 }
+
+table, td {
+  border: 1px solid #000000;
+  text-align: center;
+  border-spacing: 0;
+}
+
