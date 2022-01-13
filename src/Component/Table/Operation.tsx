@@ -1,37 +1,38 @@
 import './Operation.scss'
 import { Patient } from './Patient'
-import { IOperation } from '../../App'
+import { IOperation, IPatient } from '../../App'
 
 interface IOperationProps {
   operation: IOperation
+  patients: Record<string, IPatient>
 }
 
-export function Operation({ operation }: IOperationProps) {
+export function Operation({ operation, patients }: IOperationProps) {
   return (
     <>
-    <h1 className="operatin-header">{operation.name}</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Date of Birth</th>
-          <th>Receipt date</th>
-          <th>Blood</th>
-          <th>Diagnosis</th>
-          <th>Operation plan</th>
-          <th>Brigade</th>
-          <th>Financing</th>
-          <th>Time</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-            operation.patients.map(patient => (
-              <Patient key={patient.id} patient={patient} />
-            ))
-          }
-      </tbody>
-    </table>
+      <h1 className="operatin-header">{operation.name}</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Date of Birth</th>
+            <th>Receipt date</th>
+            <th>Blood</th>
+            <th>Diagnosis</th>
+            <th>Operation plan</th>
+            <th>Brigade</th>
+            <th>Financing</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          {operation.patients.map((patientId) => (
+            <Patient key={patientId} patient={patients[patientId]} />
+          ))}
+        </tbody>
+      </table>
+      <button>Add</button>
+      <br />
     </>
   )
 }

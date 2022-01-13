@@ -1,23 +1,25 @@
 import { Table } from './Component/Table/Table'
-import React from 'react'
+import { Form } from './Component/Form/Form'
+import React, { useState } from 'react'
+import { v4 } from 'uuid'
 
 export interface IPatient {
-  id: string,
-  name: string,
-  dofB: Date,
-  rd: Date,
-  blood: BloodType,
-  diagnosis: string,
-  op: string,
-  brig: string,
-  fin: string,
-  time: Date,
+  id: string
+  name: string
+  dofB: Date
+  rd: Date
+  blood: BloodType
+  diagnosis: string
+  op: string
+  brig: string
+  fin: string
+  time: Date
 }
 
 export interface IOperation {
-  id: string,
-  name: string,
-  patients: IPatient[]
+  id: string
+  name: string
+  patients: string[]
 }
 
 export enum BloodType {
@@ -29,89 +31,71 @@ export enum BloodType {
 
 export const App = () => {
   // change it to useState if you want to change it in runtime
-  const operations: IOperation[] = [
+  const [operations, setOperations] = useState<Array<IOperation>>([
     {
-      id: `abc1`,
+      id: v4(),
       name: `Oper1`,
-      patients: [{
-        id: `abc1`,
-        name: 'Vasya Vasilievich Noga',
-        dofB: new Date(`10,10,1894`),
-        rd: new Date(`10,10,1912`),
-        blood: BloodType.IV,
-        diagnosis: 'AbraCadabra',
-        op: 'Plus AbraHuyabra',
-        brig: 'Tima, Tema, Collapse',
-        fin: 'OMS',
-        time: new Date(),
-      },
-        {
-          id: `abc2`,
-          name: 'Vas Vasilievich Noga',
-          dofB: new Date(`10,10,1894`),
-          rd: new Date(`10,10,1912`),
-          blood: BloodType.I,
-          diagnosis: 'AbraCadabra',
-          op: 'Plus AbraHuyabra',
-          brig: 'Tima, Tema, Collapse',
-          fin: 'OMS',
-          time: new Date(),
-        },
-        {
-          id: `abc3`,
-          name: 'Vasyan Vasilievich Noga',
-          dofB: new Date(`10,10,1894`),
-          rd: new Date(`10,10,1912`),
-          blood: BloodType.II,
-          diagnosis: 'AbraCadabra',
-          op: 'Plus AbraHuyabra',
-          brig: 'Tima, Tema, Collapse',
-          fin: 'OMS',
-          time: new Date(),
-        },
-      ],
+      patients: [`abc1`, `abc2`, `abc3`],
     },
-    {
+  ])
+
+  const [patients, setPatients] = useState<Record<string, IPatient>>({
+    abc1: {
+      id: `abc1`,
+      name: 'Vasya Vasilievich Noga',
+      dofB: new Date(`10,10,1894`),
+      rd: new Date(`10,10,1912`),
+      blood: BloodType.IV,
+      diagnosis: 'AbraCadabra',
+      op: 'Plus AbraHuyabra',
+      brig: 'Tima, Tema, Collapse',
+      fin: 'OMS',
+      time: new Date(),
+    },
+    abc2: {
       id: `abc2`,
-      name: `Oper2`,
-      patients: [{
-        id: `abc1`,
-        name: 'Vasya Vasilievich Noga',
-        dofB: new Date(`10,10,1894`),
-        rd: new Date(`10,10,1912`),
-        blood: BloodType.IV,
-        diagnosis: 'AbraCadabra',
-        op: 'Plus AbraHuyabra',
-        brig: 'Tima, Tema, Collapse',
-        fin: 'OMS',
-        time: new Date(),
-      },
-        {
-          id: `abc2`,
-          name: 'Vas Vasilievich Noga',
-          dofB: new Date(`10,10,1894`),
-          rd: new Date(`10,10,1912`),
-          blood: BloodType.I,
-          diagnosis: 'AbraCadabra',
-          op: 'Plus AbraHuyabra',
-          brig: 'Tima, Tema, Collapse',
-          fin: 'OMS',
-          time: new Date(),
-        },
-        {
-          id: `abc3`,
-          name: 'Vasyan Vasilievich Noga',
-          dofB: new Date(`10,10,1894`),
-          rd: new Date(`10,10,1912`),
-          blood: BloodType.II,
-          diagnosis: 'AbraCadabra',
-          op: 'Plus AbraHuyabra',
-          brig: 'Tima, Tema, Collapse',
-          fin: 'OMS',
-          time: new Date(),
-        },
-      ],
+      name: 'Vasya Vasilievich Noga',
+      dofB: new Date(`10,10,1894`),
+      rd: new Date(`10,10,1912`),
+      blood: BloodType.IV,
+      diagnosis: 'AbraCadabra',
+      op: 'Plus AbraHuyabra',
+      brig: 'Tima, Tema, Collapse',
+      fin: 'OMS',
+      time: new Date(),
     },
-  ]
-  return <Table operations={operations} />
+    abc3: {
+      id: `abc3`,
+      name: 'Vasya Vasilievich Noga',
+      dofB: new Date(`10,10,1894`),
+      rd: new Date(`10,10,1912`),
+      blood: BloodType.IV,
+      diagnosis: 'AbraCadabra',
+      op: 'Plus AbraHuyabra',
+      brig: 'Tima, Tema, Collapse',
+      fin: 'OMS',
+      time: new Date(),
+    },
+  })
+
+  const handleClickPatient = () => {}
+
+  const handleClickOper = () => {
+    setOperations([
+      ...operations,
+      {
+        id: v4(),
+        name: `Oper2`,
+        patients: [`abc1`, `abc2`, `abc3`],
+      },
+    ])
+  }
+
+  return (
+    <>
+      <Form />
+      <Table operations={operations} patients={patients} />
+      <button onClick={handleClickOper}>Add</button>
+    </>
+  )
 }
